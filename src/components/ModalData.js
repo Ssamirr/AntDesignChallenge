@@ -27,6 +27,9 @@ const ModalData = (props) => {
       orderDate: values.orderDate.format("YYYY-MM-DD 00:00:00:000"),
       shipVia: values.shipVia
     })
+    setIsModalOpen(false);
+
+
 
   };
   const onFinishFailed = (errorInfo) => {
