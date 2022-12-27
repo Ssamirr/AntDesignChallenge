@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Button, DatePicker, Form, Input, InputNumber, Modal } from 'antd';
+import { Button, DatePicker, Form, Input, InputNumber, Modal,message} from 'antd';
 import dayjs from 'dayjs';
+import MessageComponent, { Message } from './Toast';
 
 const ModalData = (props) => {
+
+  // message
+  const [messageApi, contextHolder] = message.useMessage();
 
   // modal
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,6 +23,7 @@ const ModalData = (props) => {
   };
 
   // form
+
   const onFinish = (values) => {
     console.log('Success:', values);
     props.setUpdatedProduct({
@@ -28,7 +33,7 @@ const ModalData = (props) => {
       shipVia: values.shipVia
     })
     setIsModalOpen(false);
-
+    Message(messageApi)
 
 
   };
@@ -39,6 +44,7 @@ const ModalData = (props) => {
 
   return (
     <>
+      <MessageComponent messageApi={messageApi} contextHolder={contextHolder}/>
       <Button type="primary" onClick={showModal}>
         {props.text}
       </Button>
